@@ -116,10 +116,10 @@ public class ServicioController {
         if(true){
             servicioRepository.save(servicio);
             attr.addFlashAttribute("msg","Se creo el servicio exitosamente");
-            return "redirect:/Mascotas/list";
+            return "redirect:/Mascotas/lista";
         }else{
             attr.addFlashAttribute("msg","Se envio un campo nulo");
-            return "redirect:/Mascotas/list";
+            return "redirect:/Mascotas/lista";
         }
     }
 }
