@@ -9,33 +9,26 @@
 <body>
 <main>
     <div class="container px-4 py-5">
-        <h1 class="pb-2 mb-3 border-bottom">Nueva Servicio</h1>
-        <form method="post" th:action="@{'/Servicio/guardar'}" class="mt-2">
+        <h1 class="pb-2 mb-3 border-bottom">Nuevo Servicio</h1>
+        <form method="post" th:action="@{'/Servicio/registrarservicio'}" class="mt-2">
             <div class="mb-3">
-                <input type="hidden" class="form-control" name="mascotaIdmascota" id="mascota" th:value="mascota.getId()"
-                       disabled>
-                <label for="mascota" class="form-label">Nombre de la Mascota</label>
-                <input  type="text" id="mascota" th:text="${mascota.getNombre()}">
+                <input type="hidden" class="form-control" name="mascota" th:value="${mascota.id}">
             </div>
             <div class="mb-3">
-                <label for="cuentaIdcuenta" class="form-label">Cuenta</label>
-                <select class="form-select" id="cuentaIdcuenta" name="cuentaIdcuenta">
+                <label for="cuenta" class="form-label">Cuenta: </label>
+                <select class="form-select" id="cuenta" name="cuenta">
                     <option th:each="cuenta : ${listaCuenta}" th:value="${cuenta.id}"
                             th:text="${cuenta.correo}"></option>
                 </select>
             </div>
             <div class="mb-3">
-                <label for="hora">Selecciona la hora de inicio</label>
-                <input type="datetime-local" id="hora" name="HoraInicio"
-                       min="2022-01-01T00:00" max="2023-01-01T00:00">
-            </div>
-            <div class="mb-3">
-                <label for="duracion">Duracion en minutos</label>
+                <label for="duracion">Duracion en minutos: </label>
                 <input type="number" id="duracion" name="duracion"
                        min="10" max="100">
             </div>
             <div class="mb-3">
-                <select class="form-select" name="entrega">
+                <label for="tipoentrega">Tipo de entrega: </label>
+                <select class="form-select" id="tipoentrega" name="entrega">
                     <option value="domicilio">Domicilio
                     </option>
                     <option value="recojo">Recojo
@@ -43,9 +36,16 @@
                 </select>
             </div>
             <div class="mb-3">
-                <input type="hidden" name="responsableIdresponsable" th:value="${responsable.getId()}">
-                <label for="mascota" class="form-label">Nombre del responsable</label>
-                <input type="text" disabled th:value="${responsable.getNombre()}">
+                <label for="responsable" class="form-label">Responsable: </label>
+                <select class="form-select" id="responsable" name="responsable">
+                    <option th:each="responsable : ${listaResponsable}" th:value="${responsable.id}"
+                            th:text="${responsable.nombre}"></option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="horaInicio">Selecciona la hora de inicio: </label>
+                <input type="datetime-local" id="horaInicio" name="horaInicio"
+                       min="2022-01-01T00:00" max="2023-01-01T00:00">
             </div>
             <a th:href="@{'/Mascotas/list'}" class="btn btn-danger">Cancelar</a>
             <button type="submit" class="btn btn-primary">Registrar</button>
