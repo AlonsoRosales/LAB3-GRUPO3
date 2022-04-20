@@ -12,44 +12,44 @@
         <h1 class="pb-2 mb-3 border-bottom">Nueva Mascota</h1>
         <form method="post" th:action="@{'/Mascotas/save'}" class="mt-2">
             <div class="mb-3">
-                <label for="productname" class="form-label">Nombre de la Mascota</label>
-                <input type="text" class="form-control" name="productname" id="productname">
+                <label for="nombre" class="form-label">Nombre de la Mascota</label>
+                <input type="text" class="form-control" name="nombre" id="nombre">
             </div>
             <div class="mb-3">
-                <label for="quantityperunit" class="form-label">Año</label>
-                <input type="text" class="form-control" name="quantityperunit" id="quantityperunit">
+                <label for="anho" class="form-label">Año</label>
+                <input type="text" class="form-control" name="anho" id="anho">
             </div>
             <div class="mb-3">
-                <label for="quantityperunit" class="form-label">Historia</label>
-                <input type="text" class="form-control" name="quantityperunit" id="quantityperunit">
+                <label for="historia" class="form-label">Historia</label>
+                <input type="text" class="form-control" name="historia" id="historia">
             </div>
             <div class="mb-3">
-                <label for="quantityperunit" class="form-label">Observaciones</label>
-                <input type="text" class="form-control" name="quantityperunit" id="quantityperunit">
+                <label for="observaciones" class="form-label">Observaciones</label>
+                <input type="text" class="form-control" name="observaciones" id="observaciones">
             </div>
             <div class="mb-3">
-                <label for="quantityperunit" class="form-label">Sexo</label>
-                <input type="text" class="form-control" name="quantityperunit" id="quantityperunit">
+                <label for="sexo" class="form-label">Sexo</label>
+                <input type="text" class="form-control" name="sexo" id="sexo">
             </div>
             <div class="mb-3">
-                <label for="supplier" class="form-label">Raza</label>
-                <select name="supplier.id" class="form-select" id="supplier">
-                    <option th:each="supplier : ${listaSupplier}" th:text="${supplier.getCompanyname()}"
-                            th:value="${supplier.getId()}"></option>
+                <label for="razaEspecie.descripcion" class="form-label">Raza</label>
+                <select name="razaEspecie.descripcion" class="form-select" id="razaEspecie.descripcion">
+                    <option th:each="raza : ${razas}" th:text="${raza.getDescripcion()}"
+                            th:value="${raza.getId()}"></option>
                 </select>
             </div>
             <div class="mb-3">
-                <label for="quantityperunit" class="form-label">Raza otros</label>
-                <input type="text" class="form-control" name="quantityperunit" id="quantityperunit">
+                <label for="razaOtros" class="form-label">Raza otros</label>
+                <input type="text" class="form-control" name="razaOtros" id="razaOtros">
             </div>
             <div class="mb-3">
                 <label for="supplier" class="form-label">Cuenta</label>
                 <select name="supplier.id" class="form-select" id="supplier">
-                    <option th:each="supplier : ${listaSupplier}" th:text="${supplier.getCompanyname()}"
-                            th:value="${supplier.getId()}"></option>
+                    <option th:each="cuenta : ${cuentas}" th:text="${cuenta.getDireccion()}"
+                            th:value="${cuenta.getId()}"></option>
                 </select>
             </div>
-            <a th:href="@{'/Mascotas/list'}" class="btn btn-danger">Cancelar</a>
+            <a th:href="@{'/Mascotas/lista'}" class="btn btn-danger">Cancelar</a>
             <button type="submit" class="btn btn-primary">Registrar</button>
         </form>
     </div>
