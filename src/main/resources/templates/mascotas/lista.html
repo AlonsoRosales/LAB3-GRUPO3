@@ -12,14 +12,14 @@
     <div class="container px-4 py-5">
         <h1 class="pb-2 border-bottom">Lista de Mascotas en TeleVet</h1>
         <div class="d-flex mt-3 mb-4">
-            <a class="btn btn-primary" th:href="@{'/Mascotas/new'}">Nueva Mascota</a>
+            <a class="btn btn-primary" style="margin-right: 15px" th:href="@{'/Mascotas/new'}">Nueva Mascota</a>
             <a class="btn btn-secondary ms-auto" th:href="@{'/'}">Regresar</a>
         </div>
         <div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert"></div>
-        <form method="post" th:action="@{/Mascotas/BuscarMascotas}">
+        <!--form method="post" th:action="@{/Mascotas/BuscarMascotas}">
             <input name="searchField" class="form-control mb-3" type="text" placeholder="Search"/>
             <button type="submit" class="btn btn-primary">Primary</button>
-        </form>
+        </form-->
         <table class="table">
             <thead>
             <tr>
@@ -28,24 +28,28 @@
                 <th>Año</th>
                 <th>Sexo</th>
                 <th>Raza</th>
-                <th>Servicios</th>
+                <th>Cantidad de Servicios</th>
                 <th></th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="mascota : ${listaMascota}">
-                <td th:text="${mascota.index + 1}"></td>
-                <td th:text="${mascota.productname}"></td>
-                <td th:text="${mascota.category.categoryname}"></td>
-                <td th:text="${mascota.supplier.companyname}"></td>
-                <td th:text="${mascota.unitprice}"></td>
-                <td th:text="${mascota.unitsinstock}"></td>
+            <tr th:each="mascota,i : ${listaMascotas}">
+                <td th:text="${i.index + 1}"></td>
+                <td th:text="${mascota.nombre}"></td>
+                <td th:text="${mascota.anho}"></td>
+                <td th:text="${mascota.sexo}"></td>
+                <td th:if="${mascota.raza == null}" th:text="${mascota.descripcion}"></td>
+                <td th:if="${mascota.raza != null}" th:text="${mascota.descripcion}+ ' (' +${mascota.raza} + ')'"></td>
+                <td th:text="${mascota.cantservicios}"></td>
+                <td><a class="btn btn-secondary"
+                       th:href="@{'/Servicio/detalles' + '?id=' + ${mascota.id}}">Detalles</a>
+                </td>
                 <td><a class="btn btn-primary"
-                       th:href="@{'/Mascotas/edit' + '?id=' + ${product.id}}">Editar</a>
+                       th:href="@{'/Mascotas/edit' + '?id=' + ${mascota.id}}">Editar</a>
                 </td>
                 <td><a class="btn btn-danger"
-                       th:href="@{'/Mascotas/delete' + '?id=' + ${product.id}}">Borrar</a>
+                       th:href="@{'/Mascotas/delete' + '?id=' + ${mascota.id}}">Borrar</a>
                 </td>
             </tr>
             </tbody>

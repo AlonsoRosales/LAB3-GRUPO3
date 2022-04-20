@@ -29,6 +29,7 @@ public class Servicio {
     @JoinColumn(name = "cuenta_idcuenta", nullable = false)
     private Cuenta cuenta;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Column(name = "hora_inicio", nullable = false)
     private LocalDateTime horaInicio;
 
