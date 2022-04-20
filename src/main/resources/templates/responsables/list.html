@@ -12,8 +12,14 @@
     <div class="container px-4 py-5">
         <h1 class="pb-2 border-bottom">Lista de Responsables en TeleVet</h1>
         <div class="d-flex mt-3 mb-4">
-            <a class="btn btn-primary" th:href="@{'/Responsable/crear'}">Nueva Responsable</a>
-            <a class="btn btn-secondary ms-auto" th:href="@{'/'}">Regresar</a>
+            <div class="row-cols-1">
+                <a class="btn btn-primary" th:href="@{'/Responsable/crear'}">Nueva Responsable</a>
+                <br>
+                <br>
+                <a class="btn btn-secondary ms-auto" th:href="@{'/'}">Regresar</a>
+            </div>
+
+
         </div>
         <div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert"></div>
         <table class="table">
@@ -24,9 +30,9 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="Responsable : ${listaResponsables}">
-                <td th:text="${mascota.index + 1}"></td>
-                <td th:text="${mascota.productname}"></td>
+            <tr th:each="responsable,i : ${listaResponsables}">
+                <td th:text="${i.index + 1}"></td>
+                <td th:text="${responsable.getNombre()}"></td>
             </tr>
             </tbody>
         </table>
