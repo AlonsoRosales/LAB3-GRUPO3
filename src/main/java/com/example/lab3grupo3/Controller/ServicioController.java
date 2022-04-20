@@ -1,6 +1,7 @@
 package com.example.lab3grupo3.Controller;
 
 import com.example.lab3grupo3.Entity.Cuenta;
+import com.example.lab3grupo3.Entity.Servicio;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,32 +10,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/Mascotas")
-public class MascotaController {
+@RequestMapping(value = "Servicio")
+public class ServicioController {
+
 
     @GetMapping(value = "lista")
     public String listar(Model model){
-        return "mascota/list";
+        return "servicios/list";
     }
 
     @GetMapping(value = "crear")
     public String crear() {
-        return "mascota/new";
+        return "servicios/new";
     }
 
     @GetMapping(value = "editar")
     public String editar(Model model, @RequestParam("id") String id) {
-        return "mascota/edit";
+        return "servicios/edit";
     }
 
     @PostMapping(value = "guardar")
-    public String guardar(Cuenta cuenta) {
-        return "redirect:/Mascota/lista";
+    public String guardar(Servicio servicio) {
+        return "redirect:/Servicio/lista";
     }
 
     @GetMapping(value = "eliminar")
     public String borrar(@RequestParam("id") String id) {
-        return "redirect:/Mascota/lista";
+        return "redirect:/Servicio/lista";
     }
-
 }
