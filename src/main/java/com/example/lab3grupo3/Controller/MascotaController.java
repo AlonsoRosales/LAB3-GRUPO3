@@ -18,6 +18,11 @@ public class MascotaController {
         return "/mascotas/lista";
     }
 
+    @GetMapping("/edit")
+    public String editarMascotas(){
+
+    }
+
 
 
 

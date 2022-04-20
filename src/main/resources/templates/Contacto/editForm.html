@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <title>Editar Mascota</title>
+</head>
+<body>
+<main>
+    <div class="container px-4 py-5">
+        <h1 class="pb-2 mb-3 border-bottom">Editar Mascota</h1>
+        <form method="post" th:action="@{'/Mascotas/save'}" class="mt-2">
+            <div class="mb-3">
+                <label for="productname" class="form-label">Nombre de la Mascota</label>
+                <input type="text" class="form-control" name="productname" id="productname">
+            </div>
+            <div class="mb-3">
+                <label for="quantityperunit" class="form-label">Año</label>
+                <input type="text" class="form-control" name="quantityperunit" id="quantityperunit">
+            </div>
+            <div class="mb-3">
+                <label for="quantityperunit" class="form-label">Historia</label>
+                <input type="text" class="form-control" name="quantityperunit" id="quantityperunit">
+            </div>
+            <div class="mb-3">
+                <label for="quantityperunit" class="form-label">Observaciones</label>
+                <input type="text" class="form-control" name="quantityperunit" id="quantityperunit">
+            </div>
+            <div class="mb-3">
+                <label for="quantityperunit" class="form-label">Sexo</label>
+                <input type="text" class="form-control" name="quantityperunit" id="quantityperunit">
+            </div>
+            <div class="mb-3">
+                <label for="supplier" class="form-label">Raza</label>
+                <select name="supplier.id" class="form-select" id="supplier">
+                    <option th:each="supplier : ${listaSupplier}" th:text="${supplier.getCompanyname()}"
+                            th:value="${supplier.getId()}"></option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="quantityperunit" class="form-label">Raza otros</label>
+                <input type="text" class="form-control" name="quantityperunit" id="quantityperunit">
+            </div>
+            <div class="mb-3">
+                <label for="supplier" class="form-label">Cuenta</label>
+                <select name="supplier.id" class="form-select" id="supplier">
+                    <option th:each="supplier : ${listaSupplier}" th:text="${supplier.getCompanyname()}"
+                            th:value="${supplier.getId()}"></option>
+                </select>
+            </div>
+            <a th:href="@{'/Mascotas/list'}" class="btn btn-danger">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+    </div>
+</main>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
