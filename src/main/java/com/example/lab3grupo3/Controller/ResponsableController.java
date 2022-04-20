@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 @Controller
-@RequestMapping(value = "Servicio")
+@RequestMapping(value = "Responsable")
 public class ResponsableController {
 
     @GetMapping(value = "lista")
     public String listar(Model model){
+        model.addAttribute("listaResponsables","");
         return "responsables/list";
     }
 
