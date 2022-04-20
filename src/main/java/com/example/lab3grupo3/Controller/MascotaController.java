@@ -13,6 +13,11 @@ public class MascotaController {
         return "index";
     }
 
+    @GetMapping("/list")
+    public  String listarMascotas(){
+        return "/mascotas/lista";
+    }
+
 
 
 
