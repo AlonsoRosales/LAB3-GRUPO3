@@ -77,8 +77,8 @@ public class MascotaController {
         } else {
             redirectAttributes.addFlashAttribute("msg","Se ha editado la mascota correctamente");
         }
+        if(mascota.getRazaOtros().isBlank()){mascota.setRazaOtros(null);}
         mascotaRepository.save(mascota);
-
         return "redirect:/Mascotas/lista";
     }
 }
