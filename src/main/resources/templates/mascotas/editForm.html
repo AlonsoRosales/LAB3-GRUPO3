@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
-    <title>Nueva Mascota</title>
+    <title>Editar Mascota</title>
 </head>
 <body>
 <main>
     <div class="container px-4 py-5">
-        <h1 class="pb-2 mb-3 border-bottom">Nueva Mascota</h1>
+        <h1 class="pb-2 mb-3 border-bottom">Editar Mascota</h1>
         <form method="post" th:action="@{'/Mascotas/save'}" class="mt-2">
             <input type="text" class="form-control" name="id" id="id" th:value="${mascota.id}" hidden>
             <div class="mb-3">
@@ -34,7 +34,7 @@
             </div>
             <div class="mb-3">
                 <label for="razaEspecie.id" class="form-label">Raza</label>
-                <select name="razaEspecie.id" class="form-select" id="razaEspecie.id" required>
+                <select name="razaEspecie.id" class="form-control" id="razaEspecie.id" required>
                     <option th:each="raza : ${razas}" th:text="${raza.getDescripcion()}"
                             th:value="${raza.getId()}" th:selected="${raza.getId()==mascota.getRazaEspecie().getId()}"></option>
                 </select>
@@ -45,7 +45,7 @@
             </div>
             <div class="mb-3">
                 <label for="cuenta" class="form-label">Cuenta</label>
-                <select name="cuenta.id" class="form-select" id="cuenta">
+                <select name="cuenta.id" class="form-control" id="cuenta">
                     <option th:each="cuenta : ${cuentas}" th:text="${cuenta.getCorreo()}"
                             th:value="${cuenta.getId()}" th:selected="${cuenta.getId()==mascota.getCuenta().getId()}"></option>
                 </select>
