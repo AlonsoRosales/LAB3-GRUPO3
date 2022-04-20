@@ -1,38 +1,34 @@
 package com.example.lab3grupo3.Entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "opcion")
+
 public class Opcion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idopcion", nullable = false)
     private Integer id;
 
-    @Column(name = "descripcion", nullable = false, length = 45)
+    @Column(name = "descripcion", nullable = false)
     private String descripcion;
 
     @Column(name = "tiempo_minutos", nullable = false)
     private Integer tiempoMinutos;
 
     @Column(name = "precio", nullable = false)
-    private Double precio;
+    private Float precio;
 
-    public Double getPrecio() {
-        return precio;
+    public Integer getId() {
+        return id;
     }
 
-    public void setPrecio(Double precio) {
-        this.precio = precio;
-    }
-
-    public Integer getTiempoMinutos() {
-        return tiempoMinutos;
-    }
-
-    public void setTiempoMinutos(Integer tiempoMinutos) {
-        this.tiempoMinutos = tiempoMinutos;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getDescripcion() {
@@ -43,11 +39,19 @@ public class Opcion {
         this.descripcion = descripcion;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getTiempoMinutos() {
+        return tiempoMinutos;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setTiempoMinutos(Integer tiempoMinutos) {
+        this.tiempoMinutos = tiempoMinutos;
+    }
+
+    public Float getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Float precio) {
+        this.precio = precio;
     }
 }

@@ -12,16 +12,17 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class OpcionServicio {
-    @Id
+    @EmbeddedId
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idopcion_servicio", nullable = false)
-    private Integer id;
+    private OpcionService id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
+    @MapsId("opcionId")
     @JoinColumn(name = "opcion_idopcion", nullable = false)
     private Opcion opcion;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
+    @MapsId("servicioId")
     @JoinColumn(name = "servicio_idservicio", nullable = false)
     private Servicio servicio;
 

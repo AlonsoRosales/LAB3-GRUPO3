@@ -4,24 +4,25 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
-        <title>Nueva Servicio</title>
+        <title>Editar Servicio</title>
     </head>
     <body>
         <main>
             <div class="container px-4 py-5">
-                <h1 class="pb-2 mb-3 border-bottom">Nuevo Servicio</h1>
-                <form method="post" th:action="@{'/Servicio/save'}" class="mt-2">
+                <h1 class="pb-2 mb-3 border-bottom">Editar Servicio</h1>
+                <form method="post" th:action="@{'/Servicio/save'}" class="mt-2" th:object="${service}">
+                    <input th:field="*{id}" type="hidden"/>
                     <div class="mb-3">
-                        <label for="descripcion" class="form-label">Descripcion</label>
-                        <input type="text" class="form-control" name="descripcion" id="descripcion">
+                        <label class="form-label">Descripcion</label>
+                        <input th:field="*{descripcion}" type="text" class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label for="precio" class="form-label">Precio</label>
-                        <input type="text" class="form-control" name="precio" id="precio">
+                        <label class="form-label">Precio</label>
+                        <input type="text" class="form-control" th:field="*{precio}">
                     </div>
                     <div class="mb-3">
-                        <label for="tiempoMinutos" class="form-label">Tiempo(min)</label>
-                        <input type="text" class="form-control" name="tiempoMinutos" id="tiempoMinutos">
+                        <label class="form-label">Tiempo(min)</label>
+                        <input type="text" class="form-control" th:field="*{tiempoMinutos}">
                     </div>
                     <a th:href="@{'/Servicio/lista'}" class="btn btn-danger">Cancelar</a>
                     <button type="submit" class="btn btn-primary">Registrar</button>

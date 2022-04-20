@@ -5,9 +5,11 @@ import com.example.lab3grupo3.Entity.Mascota;
 import com.example.lab3grupo3.Entity.Responsable;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "servicio")
@@ -19,16 +21,16 @@ public class Servicio {
     @Column(name = "idservicio", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "mascota_idmascota", nullable = false)
-    private Mascota mascotaIdmascota;
+    private Mascota mascota;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "cuenta_idcuenta", nullable = false)
-    private Cuenta cuentaIdcuenta;
+    private Cuenta cuenta;
 
     @Column(name = "hora_inicio", nullable = false)
-    private Instant horaInicio;
+    private LocalDateTime horaInicio;
 
     @Column(name = "duracion", nullable = false)
     private Integer duracion;
@@ -38,7 +40,7 @@ public class Servicio {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "responsable_idresponsable", nullable = false)
-    private Responsable responsableIdresponsable;
+    private Responsable responsable;
 
 
 }

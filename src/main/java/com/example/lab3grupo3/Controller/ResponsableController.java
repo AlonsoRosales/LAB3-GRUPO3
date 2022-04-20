@@ -20,7 +20,7 @@ public class ResponsableController {
     @Autowired
     ResponsableRepository responsableRepository;
 
-    @GetMapping(value = "lista")
+   @GetMapping(value = "lista")
     public String listar(Model model){
         model.addAttribute("listaResponsables",responsableRepository.findAll());
         return "responsables/list";

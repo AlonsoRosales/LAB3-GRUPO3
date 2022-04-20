@@ -1,9 +1,9 @@
 package com.example.lab3grupo3.Controller;
 
-import com.example.lab3grupo3.Entity.Cuenta;
-import com.example.lab3grupo3.Entity.OpcionServicio;
-import com.example.lab3grupo3.Entity.Servicio;
+import com.example.lab3grupo3.Entity.*;
+import com.example.lab3grupo3.Repository.OpcionRepository;
 import com.example.lab3grupo3.Repository.OpcionServicioRepository;
+import com.example.lab3grupo3.Repository.ResponsableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,37 +11,62 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
+import java.util.Optional;
 
 @Controller
-@RequestMapping(value = "Servicio")
+@RequestMapping("/Servicio")
 public class ServicioController {
 
     @Autowired
     OpcionServicioRepository opcionServicioRepository;
 
+    @Autowired
+    ResponsableRepository responsableRepository;
+
+    @Autowired
+    OpcionRepository opcionRepository;
+
     @GetMapping("/lista")
     public String listar(Model model){
-
+        List<Opcion> list = opcionRepository.findAll();
+        model.addAttribute("listaServicios",list);
         return "servicio/lista";
     }
 
-    @GetMapping(value = "crear")
-    public String crear() {
-        return "servicios/new";
+    @GetMapping("/new")
+    public String nuevo(){
+        return "servicio/newForm";
     }
 
-    @GetMapping(value = "editar")
-    public String editar(Model model, @RequestParam("id") String id) {
-        return "servicios/edit";
+    @GetMapping("/editar")
+    public String editar(Model model, @RequestParam("id") int id) {
+
+        model.addAttribute("service",opcionRepository.obtenerOpcionById(id)); //No era necesario crear el query xd
+        return "servicio/edit";
     }
 
-    @PostMapping(value = "guardar")
-    public String guardar(Servicio servicio) {
+    @PostMapping("/save")
+    public String guardarProducto(Opcion opcion, RedirectAttributes redirectAttributes) {
+        if(opcion.getId() == null){
+            redirectAttributes.addFlashAttribute("msg1", "Servicio creado exitosamente");
+        }
+        else{
+            redirectAttributes.addFlashAttribute("msg2","Servicio editado exitosamente");
+        }
+        opcionRepository.save(opcion);
+        //opcionServicioRepository.save(opcionServicio);
         return "redirect:/Servicio/lista";
     }
 
-    @GetMapping(value = "eliminar")
-    public String borrar(@RequestParam("id") String id) {
+    @GetMapping("/delete")
+    public String borrarTransportista(@RequestParam("id") int id,RedirectAttributes redirectAttributes) {
+        opcionRepository.deleteById(id);
+        redirectAttributes.addFlashAttribute("msg3","Servicio borrado exitosamente");
         return "redirect:/Servicio/lista";
     }
+
+
 }
