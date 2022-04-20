@@ -14,10 +14,6 @@ public class MascotaController {
     @Autowired
     MascotaRepository mascotaRepository;
 
-    @GetMapping("")
-    public String home(){
-        return "index";
-    }
 
     @GetMapping("/lista")
     public  String listarMascotas(Model model){
