@@ -1,7 +1,10 @@
 package com.example.lab3grupo3.Controller;
 
 import com.example.lab3grupo3.Entity.Cuenta;
+import com.example.lab3grupo3.Entity.OpcionServicio;
 import com.example.lab3grupo3.Entity.Servicio;
+import com.example.lab3grupo3.Repository.OpcionServicioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,10 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping(value = "Servicio")
 public class ServicioController {
 
+    @Autowired
+    OpcionServicioRepository opcionServicioRepository;
 
-    @GetMapping(value = "lista")
+    @GetMapping("/lista")
     public String listar(Model model){
-        return "servicios/list";
+
+        return "servicio/lista";
     }
 
     @GetMapping(value = "crear")
