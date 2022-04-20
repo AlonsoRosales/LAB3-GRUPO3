@@ -43,17 +43,6 @@
                 </select>
             </div>
             <div class="mb-3">
-                <label for="supplier" class="form-label">Raza</label>
-                <select name="supplier.id" class="form-select" id="supplier">
-                    <option th:each="supplier : ${listaSupplier}" th:text="${supplier.getCompanyname()}"
-                            th:value="${supplier.getId()}"></option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="quantityperunit" class="form-label">Raza otros</label>
-                <input type="text" class="form-control" name="quantityperunit" id="quantityperunit">
-            </div>
-            <div class="mb-3">
                 <input type="hidden" name="responsableIdresponsable" th:value="${responsable.getId()}">
                 <label for="mascota" class="form-label">Nombre del responsable</label>
                 <input type="text" disabled th:value="${responsable.getNombre()}">
