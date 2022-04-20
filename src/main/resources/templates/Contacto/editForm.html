@@ -52,7 +52,7 @@
                 <td th:text="${mascota.getNombre()}"></td>
                 <td th:text="${mascota.getAnho()}"></td>
                 <td th:text="${mascota.getSexo()}"></td>
-                <td th:text="${mascota.getRazaEspecieIdraza().getDescripcion()}"></td>
+                <td th:text="${mascota.getRazaEspecie().getDescripcion()}"></td>
                 <td><a class="btn btn-danger"
                        th:href="@{'/Mascotas/delete' + '?id=' + ${mascota.getId()}}">Borrar</a>
                 </td>

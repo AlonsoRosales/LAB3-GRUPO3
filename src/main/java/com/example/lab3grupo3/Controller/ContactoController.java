@@ -44,7 +44,7 @@ public class ContactoController {
                 Optional<Cuenta> cuentas = cuentaRepository.findById(idB);
                 if (cuentas.isPresent()){
                     model.addAttribute("dueno", cuentas.get());
-                    List<Mascota> mascotas = mascotaRepository.findByCuentaIdcuenta(cuentas.get());
+                    List<Mascota> mascotas = mascotaRepository.findByCuenta(cuentas.get());
                     model.addAttribute("mascotas",mascotas);
                     return "Contacto/editForm";
                 }
@@ -85,7 +85,7 @@ public class ContactoController {
             if (idB>0){
                 Optional<Cuenta> cuentas = cuentaRepository.findById(idB);
                 if (cuentas.isPresent()){
-                    List<Mascota> mascotas = mascotaRepository.findByCuentaIdcuenta(cuentas.get());
+                    List<Mascota> mascotas = mascotaRepository.findByCuenta(cuentas.get());
                     model.addAttribute("mascotas",mascotas);
                     return "Contacto/listMascotas";
                 }
@@ -105,7 +105,7 @@ public class ContactoController {
         Optional<Cuenta> cuenta = cuentaRepository.findById(Integer.parseInt(id));
         if (cuenta.isPresent()){
             Cuenta cuenta1 = cuenta.get();
-            List<Mascota> mascotas = mascotaRepository.findByCuentaIdcuenta(cuenta1);
+            List<Mascota> mascotas = mascotaRepository.findByCuenta(cuenta1);
             if (!mascotas.isEmpty()){
                 attributes.addFlashAttribute("msg","No se puede eliminar la cuenta ya que cuenta con mascotas a su nombre");
                 return "redirect:/Contacto/list";
