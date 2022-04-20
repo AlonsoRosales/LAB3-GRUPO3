@@ -16,29 +16,28 @@ import java.util.Optional;
 @RequestMapping(value = "Contacto")
 public class ContactoController {
 
-
-
-    @GetMapping(value = "lista")
+    @GetMapping(value = "list")
     public String listar(Model model){
+
         return "contactos/list";
     }
 
-    @GetMapping(value = "crear")
+    @GetMapping(value = "new")
     public String crear() {
         return "contactos/new";
     }
 
-    @GetMapping(value = "editar")
+    @GetMapping(value = "edit")
     public String editar(Model model, @RequestParam("id") String id) {
         return "contactos/edit";
     }
 
-    @PostMapping(value = "guardar")
+    @PostMapping(value = "save")
     public String guardar(Cuenta cuenta) {
         return "redirect:/Contactos/lista";
     }
 
-    @GetMapping(value = "eliminar")
+    @GetMapping(value = "delete")
     public String borrar(@RequestParam("id") String id) {
         return "redirect:/Contactos/lista";
     }
