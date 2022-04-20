@@ -1,9 +1,7 @@
 package com.example.lab3grupo3.Controller;
 
 import com.example.lab3grupo3.Entity.*;
-import com.example.lab3grupo3.Repository.OpcionRepository;
-import com.example.lab3grupo3.Repository.OpcionServicioRepository;
-import com.example.lab3grupo3.Repository.ResponsableRepository;
+import com.example.lab3grupo3.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +26,15 @@ public class ServicioController {
 
     @Autowired
     OpcionRepository opcionRepository;
+
+    @Autowired
+    MascotaRepository mascotaRepository;
+
+    @Autowired
+    CuentaRepository cuentaRepository;
+
+    @Autowired
+    ServicioRepository servicioRepository;
 
     @GetMapping("/lista")
     public String listar(Model model){
@@ -68,5 +75,52 @@ public class ServicioController {
         return "redirect:/Servicio/lista";
     }
 
+    @GetMapping("/detalles")
+    public String detalles(RedirectAttributes attr,Model model,@RequestParam("id") String mascotaId){
+        try{
+            Optional<Mascota> opt = mascotaRepository.findById(Integer.parseInt(mascotaId));
+            if(opt.isPresent()){
+                model.addAttribute("mascota",opt.get());
+                model.addAttribute("mascotaServicios",mascotaRepository.obtenerServiciosMascota(Integer.parseInt(mascotaId)));
+                return "servicio/indice";
+            }else{
+                attr.addFlashAttribute("msg","No se encontro una mascota con el ID dado");
+                return "mascota/lista";
+            }
+        }catch (Exception e){
+            attr.addAttribute("msg","Ingreso un id invalido");
+            return "mascota/lista";
+        }
 
+    }
+
+    @GetMapping("/serviciomascota")
+    public String nuevoServicio(RedirectAttributes attr,Model model,@RequestParam("id") String mascotaId){
+        try{
+            Optional<Mascota> opt = mascotaRepository.findById(Integer.parseInt(mascotaId));
+            if(opt.isPresent()){
+                model.addAttribute("mascota",opt.get());
+                model.addAttribute("listaCuenta", cuentaRepository.findAll());
+                model.addAttribute("listaResponsable",responsableRepository.responsablespormascota(Integer.parseInt(mascotaId)));
+                return "servicio/detalles";
+            }else{
+                attr.addFlashAttribute("msg","No se encontro una mascota con el ID dado");
+                return "mascota/lista";
+            }
+        }catch (Exception e){
+            attr.addAttribute("msg","Ingreso un id invalido");
+            return "mascota/lista";
+        }
+    }
+    @PostMapping("/registrarservicio")
+    public String registrarServicio(RedirectAttributes attr,Servicio servicio){
+        if(true){
+            servicioRepository.save(servicio);
+            attr.addFlashAttribute("msg","Se creo el servicio exitosamente");
+            return "redirect:/Mascotas/lista";
+        }else{
+            attr.addFlashAttribute("msg","Se envio un campo nulo");
+            return "redirect:/Mascotas/lista";
+        }
+    }
 }

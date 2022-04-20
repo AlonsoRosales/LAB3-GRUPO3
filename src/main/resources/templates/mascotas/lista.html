@@ -34,14 +34,17 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="mascota,i : ${listaMascotas}">
+            <tr th:each="mascota,i : ${mascotaServicio}">
                 <td th:text="${i.index + 1}"></td>
-                <td th:text="${mascota.nombre}"></td>
+                <td th:text="${}"></td>
                 <td th:text="${mascota.anho}"></td>
                 <td th:text="${mascota.sexo}"></td>
                 <td th:if="${mascota.raza == null}" th:text="${mascota.descripcion}"></td>
                 <td th:if="${mascota.raza != null}" th:text="${mascota.descripcion}+ ' (' +${mascota.raza} + ')'"></td>
                 <td th:text="${mascota.cantservicios}"></td>
+                <td><a class="btn btn-secondary"
+                       th:href="@{'/Servicio/detalles' + '?id=' + ${mascota.id}}">Detalles</a>
+                </td>
                 <td><a class="btn btn-primary"
                        th:href="@{'/Mascotas/edit' + '?id=' + ${mascota.id}}">Editar</a>
                 </td>
