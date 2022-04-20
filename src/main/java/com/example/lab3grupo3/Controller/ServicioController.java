@@ -81,6 +81,7 @@ public class ServicioController {
             Optional<Mascota> opt = mascotaRepository.findById(Integer.parseInt(mascotaId));
             if(opt.isPresent()){
                 model.addAttribute("mascota",opt.get());
+                model.addAttribute("mascotaServicios",mascotaRepository.obtenerServiciosMascota(Integer.parseInt(mascotaId)));
                 return "servicio/indice";
             }else{
                 attr.addFlashAttribute("msg","No se encontro una mascota con el ID dado");
