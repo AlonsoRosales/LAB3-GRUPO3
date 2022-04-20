@@ -4,54 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
-    <title>Editar Mascota</title>
+    <title>Editar Contacto</title>
 </head>
 <body>
 <main>
     <div class="container px-4 py-5">
-        <h1 class="pb-2 mb-3 border-bottom">Editar Mascota</h1>
-        <form method="post" th:action="@{'/Mascotas/save'}" class="mt-2">
+        <h1 class="pb-2 mb-3 border-bottom">Editar Contacto</h1>
+        <form method="post" th:action="@{'/Contacto/save'}" class="mt-2">
+            <input th:value="${dueno.id}" type="text" class="form-control" name="id" id="id" hidden>
             <div class="mb-3">
-                <label for="productname" class="form-label">Nombre de la Mascota</label>
-                <input type="text" class="form-control" name="productname" id="productname">
+                <label for="correo" class="form-label">Correo</label>
+                <input th:value="${dueno.correo}" type="text" class="form-control" name="correo" id="correo" readonly>
             </div>
             <div class="mb-3">
-                <label for="quantityperunit" class="form-label">Año</label>
-                <input type="text" class="form-control" name="quantityperunit" id="quantityperunit">
+                <label for="direccion" class="form-label">Direccion</label>
+                <input th:value="${dueno.direccion}" type="text" class="form-control" name="direccion" id="direccion" >
             </div>
             <div class="mb-3">
-                <label for="quantityperunit" class="form-label">Historia</label>
-                <input type="text" class="form-control" name="quantityperunit" id="quantityperunit">
+                <label for="password" class="form-label">Contraseña</label>
+                <input th:value="${dueno.password}" type="password" class="form-control" name="password" id="password">
             </div>
             <div class="mb-3">
-                <label for="quantityperunit" class="form-label">Observaciones</label>
-                <input type="text" class="form-control" name="quantityperunit" id="quantityperunit">
+                <label for="telefono" class="form-label">Telefono</label>
+                <input th:value="${dueno.telefono}" type="text" class="form-control" name="telefono" id="telefono" readonly>
             </div>
             <div class="mb-3">
-                <label for="quantityperunit" class="form-label">Sexo</label>
-                <input type="text" class="form-control" name="quantityperunit" id="quantityperunit">
+                <label for="admin" class="form-label">Numero de admin</label>
+                <input th:value="${dueno.admin}" type="text" class="form-control" name="admin" id="admin" readonly>
             </div>
-            <div class="mb-3">
-                <label for="supplier" class="form-label">Raza</label>
-                <select name="supplier.id" class="form-select" id="supplier">
-                    <option th:each="supplier : ${listaSupplier}" th:text="${supplier.getCompanyname()}"
-                            th:value="${supplier.getId()}"></option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="quantityperunit" class="form-label">Raza otros</label>
-                <input type="text" class="form-control" name="quantityperunit" id="quantityperunit">
-            </div>
-            <div class="mb-3">
-                <label for="supplier" class="form-label">Cuenta</label>
-                <select name="supplier.id" class="form-select" id="supplier">
-                    <option th:each="supplier : ${listaSupplier}" th:text="${supplier.getCompanyname()}"
-                            th:value="${supplier.getId()}"></option>
-                </select>
-            </div>
-            <a th:href="@{'/Mascotas/list'}" class="btn btn-danger">Cancelar</a>
+            <a th:href="@{'/Contacto/list'}" class="btn btn-danger">Cancelar</a>
             <button type="submit" class="btn btn-primary">Registrar</button>
         </form>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre mascota</th>
+                <th>Año</th>
+                <th>Sexo</th>
+                <th>Raza</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="mascota : ${mascotas}">
+                <td th:text="${mascota.getId()}"></td>
+                <td th:text="${mascota.getNombre()}"></td>
+                <td th:text="${mascota.getAnho()}"></td>
+                <td th:text="${mascota.getSexo()}"></td>
+                <td th:text="${mascota.getRazaEspecieIdraza().getDescripcion()}"></td>
+                <td><a class="btn btn-danger"
+                       th:href="@{'/Mascotas/delete' + '?id=' + ${mascota.getId()}}">Borrar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+
     </div>
 </main>
 
