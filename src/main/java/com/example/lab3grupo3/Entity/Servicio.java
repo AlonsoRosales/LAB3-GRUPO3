@@ -33,7 +33,6 @@ public class Servicio {
     @Column(name = "duracion", nullable = false)
     private Integer duracion;
 
-    @Lob
     @Column(name = "entrega", nullable = false)
     private String entrega;
 

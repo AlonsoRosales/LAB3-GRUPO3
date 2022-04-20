@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <title>Nueva Servicio</title>
+</head>
+<body>
+<main>
+    <div class="container px-4 py-5">
+        <h1 class="pb-2 mb-3 border-bottom">Nueva Servicio</h1>
+        <form method="post" th:action="@{'/Servicio/guardar'}" class="mt-2">
+            <div class="mb-3">
+                <input type="hidden" class="form-control" name="mascotaIdmascota" id="mascota" th:value="mascota.getId()"
+                       disabled>
+                <label for="mascota" class="form-label">Nombre de la Mascota</label>
+                <input  type="text" id="mascota" th:text="${mascota.getNombre()}">
+            </div>
+            <div class="mb-3">
+                <label for="cuentaIdcuenta" class="form-label">Cuenta</label>
+                <select class="form-select" id="cuentaIdcuenta" name="cuentaIdcuenta">
+                    <option th:each="cuenta : ${listaCuenta}" th:value="${cuenta.id}"
+                            th:text="${cuenta.correo}"></option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="hora">Selecciona la hora de inicio</label>
+                <input type="datetime-local" id="hora" name="HoraInicio"
+                       min="2022-01-01T00:00" max="2023-01-01T00:00">
+            </div>
+            <div class="mb-3">
+                <label for="duracion">Duracion en minutos</label>
+                <input type="number" id="duracion" name="duracion"
+                       min="10" max="100">
+            </div>
+            <div class="mb-3">
+                <select class="form-select" name="entrega">
+                    <option value="domicilio">Domicilio
+                    </option>
+                    <option value="recojo">Recojo
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="supplier" class="form-label">Raza</label>
+                <select name="supplier.id" class="form-select" id="supplier">
+                    <option th:each="supplier : ${listaSupplier}" th:text="${supplier.getCompanyname()}"
+                            th:value="${supplier.getId()}"></option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="quantityperunit" class="form-label">Raza otros</label>
+                <input type="text" class="form-control" name="quantityperunit" id="quantityperunit">
+            </div>
+            <div class="mb-3">
+                <input type="hidden" name="responsableIdresponsable" th:value="${responsable.getId()}">
+                <label for="mascota" class="form-label">Nombre del responsable</label>
+                <input type="text" disabled th:value="${responsable.getNombre()}">
+            </div>
+            <a th:href="@{'/Mascotas/list'}" class="btn btn-danger">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+    </div>
+</main>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
