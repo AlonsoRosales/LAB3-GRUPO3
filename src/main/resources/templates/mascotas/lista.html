@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
-    <title >Lista de Mascotas</title>
+    <title>Lista de Mascotas</title>
 </head>
 
 <body>
@@ -16,10 +16,30 @@
             <a class="btn btn-secondary ms-auto" th:href="@{'/'}">Regresar</a>
         </div>
         <div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert"></div>
+
+        <form id="form" method="get" th:action="@{'/Mascotas/buscar'}">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <select id="contacto" name="contacto" class="form-control">
+                        <option th:selected="${contacto==null || contacto==0}" value="0" th:text="${'Contacto (Todos)'}"></option>
+                        <option th:each="cuenta : ${cuentas}" th:value="${cuenta.id}" th:text="${cuenta.correo}"
+                        th:selected="${cuenta.id == contacto}"></option>
+                    </select>
+                </div>
+                <div class="form-group col-md-8">
+                    <input type="search" class="form-control" id="query" name="query" th:value="${query}"
+                           placeholder="Buscar por sexo o raza">
+                </div>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+            <br>
+        </form>
         <!--form method="post" th:action="@{/Mascotas/BuscarMascotas}">
             <input name="searchField" class="form-control mb-3" type="text" placeholder="Search"/>
             <button type="submit" class="btn btn-primary">Primary</button>
         </form-->
+        <br>
         <table class="table">
             <thead>
             <tr>

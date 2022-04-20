@@ -45,7 +45,7 @@
             <div class="mb-3">
                 <label for="cuenta.id" class="form-label">Cuenta</label>
                 <select name="cuenta.id" class="form-select" id="cuenta.id">
-                    <option th:each="cuenta : ${cuentas}" th:text="${cuenta.getDireccion()}"
+                    <option th:each="cuenta : ${cuentas}" th:text="${cuenta.getCorreo()}"
                             th:value="${cuenta.getId()}"></option>
                 </select>
             </div>

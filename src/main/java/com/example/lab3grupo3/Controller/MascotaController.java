@@ -26,6 +26,7 @@ public class MascotaController {
     @Autowired
     CuentaRepository cuentaRepository;
 
+
     @GetMapping("")
     public String home() {
         return "index";
@@ -34,6 +35,20 @@ public class MascotaController {
     @GetMapping("/lista")
     public String listarMascotas(Model model) {
         model.addAttribute("mascotaServicio", mascotaRepository.obtenerMascotasCantServicios());
+        model.addAttribute("cuentas", cuentaRepository.findAll());
+        return "mascotas/lista";
+    }
+
+    @GetMapping("/buscar")
+    public String buscarMascotas(@RequestParam("query") String query, @RequestParam("contacto") Integer contacto, Model model) {
+        if (contacto == null || contacto == 0) {
+            model.addAttribute("mascotaServicio", mascotaRepository.buscarMascotas(query.toLowerCase()));
+        } else {
+            model.addAttribute("mascotaServicio", mascotaRepository.buscarMascotasContacto(query.toLowerCase(),contacto));
+        }
+        model.addAttribute("query", query);
+        model.addAttribute("cuentas", cuentaRepository.findAll());
+        model.addAttribute("contacto", contacto);
         return "mascotas/lista";
     }
 
@@ -63,6 +78,7 @@ public class MascotaController {
         }
         return "redirect:/Mascotas/lista";
     }
+
     @GetMapping("/new")
     public String newMascotas(Model model) {
         model.addAttribute("razas", razaEspecieRepository.findAll());
@@ -71,13 +87,15 @@ public class MascotaController {
     }
 
     @PostMapping("/save")
-    public String saveMascotas(Mascota mascota, RedirectAttributes redirectAttributes){
-        if(mascota.getId()==null){
-            redirectAttributes.addFlashAttribute("msg","Se ha creado la mascota correctamente");
+    public String saveMascotas(Mascota mascota, RedirectAttributes redirectAttributes) {
+        if (mascota.getId() == null) {
+            redirectAttributes.addFlashAttribute("msg", "Se ha creado la mascota correctamente");
         } else {
-            redirectAttributes.addFlashAttribute("msg","Se ha editado la mascota correctamente");
+            redirectAttributes.addFlashAttribute("msg", "Se ha editado la mascota correctamente");
         }
-        if(mascota.getRazaOtros().isBlank()){mascota.setRazaOtros(null);}
+        if (mascota.getRazaOtros().isBlank()) {
+            mascota.setRazaOtros(null);
+        }
         mascotaRepository.save(mascota);
         return "redirect:/Mascotas/lista";
     }
