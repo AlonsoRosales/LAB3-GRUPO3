@@ -71,9 +71,14 @@ public class MascotaController {
     }
 
     @PostMapping("/save")
-    public String saveMascotas(Mascota mascota){
-
+    public String saveMascotas(Mascota mascota, RedirectAttributes redirectAttributes){
+        if(mascota.getId()==null){
+            redirectAttributes.addFlashAttribute("msg","Se ha creado la mascota correctamente");
+        } else {
+            redirectAttributes.addFlashAttribute("msg","Se ha editado la mascota correctamente");
+        }
         mascotaRepository.save(mascota);
+
         return "redirect:/Mascotas/lista";
     }
 }
