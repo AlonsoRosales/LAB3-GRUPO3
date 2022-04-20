@@ -13,27 +13,27 @@
         <form method="post" th:action="@{'/Mascotas/save'}" class="mt-2">
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre de la Mascota</label>
-                <input type="text" class="form-control" name="nombre" id="nombre">
+                <input type="text" class="form-control" name="nombre" id="nombre" required>
             </div>
             <div class="mb-3">
                 <label for="anho" class="form-label">Año</label>
-                <input type="text" class="form-control" name="anho" id="anho">
+                <input type="text" class="form-control" name="anho" id="anho" required>
             </div>
             <div class="mb-3">
                 <label for="historia" class="form-label">Historia</label>
-                <input type="text" class="form-control" name="historia" id="historia">
+                <input type="text" class="form-control" name="historia" id="historia" required>
             </div>
             <div class="mb-3">
                 <label for="observaciones" class="form-label">Observaciones</label>
-                <input type="text" class="form-control" name="observaciones" id="observaciones">
+                <input type="text" class="form-control" name="observaciones" id="observaciones" required>
             </div>
             <div class="mb-3">
                 <label for="sexo" class="form-label">Sexo</label>
-                <input type="text" class="form-control" name="sexo" id="sexo">
+                <input type="text" class="form-control" name="sexo" id="sexo" required>
             </div>
             <div class="mb-3">
-                <label for="razaEspecie.descripcion" class="form-label">Raza</label>
-                <select name="razaEspecie.descripcion" class="form-select" id="razaEspecie.descripcion">
+                <label for="razaEspecie.id" class="form-label">Raza</label>
+                <select name="razaEspecie.id" class="form-select" id="razaEspecie.id" required>
                     <option th:each="raza : ${razas}" th:text="${raza.getDescripcion()}"
                             th:value="${raza.getId()}"></option>
                 </select>
@@ -43,8 +43,8 @@
                 <input type="text" class="form-control" name="razaOtros" id="razaOtros">
             </div>
             <div class="mb-3">
-                <label for="supplier" class="form-label">Cuenta</label>
-                <select name="supplier.id" class="form-select" id="supplier">
+                <label for="cuenta.id" class="form-label">Cuenta</label>
+                <select name="cuenta.id" class="form-select" id="cuenta.id">
                     <option th:each="cuenta : ${cuentas}" th:text="${cuenta.getDireccion()}"
                             th:value="${cuenta.getId()}"></option>
                 </select>

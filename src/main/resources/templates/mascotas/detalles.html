@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+  <title >Servicios de Mascota</title>
+</head>
+
+<body>
+<main>
+  <div class="container px-4 py-5">
+    <h1 class="pb-2 border-bottom">Servicios de Mascota</h1>
+    <div class="d-flex mt-3 mb-4">
+      <a class="btn btn-primary" style="margin-right: 15px" th:href="@{'/Mascotas/lista'}">Volver</a>
+    </div>
+    <div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert"></div>
+    <!--form method="post" th:action="@{/Mascotas/BuscarMascotas}">
+        <input name="searchField" class="form-control mb-3" type="text" placeholder="Search"/>
+        <button type="submit" class="btn btn-primary">Primary</button>
+    </form-->
+    <table class="table">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombre mascota</th>
+        <th>edad</th>
+        <th>Hora de inicio</th>
+        <th>Duración</th>
+        <th>Entrega</th>
+        <th>Nombre del responsable</th>
+        <th>Servicio</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="servicio,i : ${servicios}">
+        <td th:text="${i.index + 1}"></td>
+        <td th:text="${servicio.nombreMascota}"></td>
+        <td th:text="${servicio.anho}"></td>
+        <td th:text="${servicio.horaInicio}"></td>
+        <td th:text="${servicio.duracion}"></td>
+        <td th:text="${servicio.entrega}"></td>
+        <td th:text="${servicio.responsable}"></td>
+        <td th:text="${servicio.servicio}"></td>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

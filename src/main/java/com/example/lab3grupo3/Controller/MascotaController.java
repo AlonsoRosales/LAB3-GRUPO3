@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.persistence.CascadeType;
 import javax.swing.text.html.Option;
 import java.util.Optional;
 
@@ -31,7 +33,7 @@ public class MascotaController {
 
     @GetMapping("/lista")
     public String listarMascotas(Model model) {
-        model.addAttribute("listaMascotas", mascotaRepository.obtenerMascotasCantServicios());
+        model.addAttribute("mascotaServicio", mascotaRepository.obtenerMascotasCantServicios());
         return "mascotas/lista";
     }
 
@@ -51,11 +53,12 @@ public class MascotaController {
     }
 
     @GetMapping("/delete")
-    public String deleteMascotas(@RequestParam("id") Integer id) {
+    public String deleteMascotas(@RequestParam("id") Integer id, RedirectAttributes redirectAttributes) {
         if (id != null) {
             Optional<Mascota> optionalMascota = mascotaRepository.findById(id);
             if (optionalMascota.isPresent()) {
                 mascotaRepository.deleteById(id);
+                redirectAttributes.addFlashAttribute("msg", "Mascota borrada exitosamente");
             }
         }
         return "redirect:/Mascotas/lista";
@@ -69,6 +72,7 @@ public class MascotaController {
 
     @PostMapping("/save")
     public String saveMascotas(Mascota mascota){
+
         mascotaRepository.save(mascota);
         return "redirect:/Mascotas/lista";
     }

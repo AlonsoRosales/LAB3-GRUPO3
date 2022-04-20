@@ -5,10 +5,7 @@ import com.example.lab3grupo3.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -122,5 +119,14 @@ public class ServicioController {
             attr.addFlashAttribute("msg","Se envio un campo nulo");
             return "redirect:/Mascotas/lista";
         }
+    }
+
+    @GetMapping("/detallesMascotas")
+    public String detallesServicio(@RequestParam("id") Integer id, Model model){
+        if(id!=null && mascotaRepository.findById(id).isPresent()){
+            model.addAttribute("servicios", mascotaRepository.obtenerServiciosMascota(id));
+            return "mascotas/detalles";
+        }
+        return "redirect:/servicio/lista";
     }
 }

@@ -12,6 +12,9 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class Mascota {
+
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idmascota", nullable = false)

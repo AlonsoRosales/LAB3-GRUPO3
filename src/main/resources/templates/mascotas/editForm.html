@@ -14,27 +14,27 @@
             <input type="text" class="form-control" name="id" id="id" th:value="${mascota.id}" hidden>
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre de la Mascota</label>
-                <input type="text" class="form-control" name="nombre" id="nombre" th:value="${mascota.nombre}">
+                <input type="text" class="form-control" name="nombre" id="nombre" th:value="${mascota.nombre}" required>
             </div>
             <div class="mb-3">
                 <label for="anho" class="form-label">Año</label>
-                <input type="text" class="form-control" name="anho" id="anho" th:value="${mascota.anho}">
+                <input type="text" class="form-control" name="anho" id="anho" th:value="${mascota.anho}" required>
             </div>
             <div class="mb-3">
                 <label for="historia" class="form-label">Historia</label>
-                <input type="text" class="form-control" name="historia" id="historia" th:value="${mascota.historia}">
+                <input type="text" class="form-control" name="historia" id="historia" th:value="${mascota.historia}" required>
             </div>
             <div class="mb-3">
                 <label for="observaciones" class="form-label">Observaciones</label>
-                <input type="text" class="form-control" name="observaciones" id="observaciones" th:value="${mascota.observaciones}">
+                <input type="text" class="form-control" name="observaciones" id="observaciones" th:value="${mascota.observaciones}" required>
             </div>
             <div class="mb-3">
                 <label for="sexo" class="form-label">Sexo</label>
-                <input type="text" class="form-control" name="sexo" id="sexo" th:value="${mascota.sexo}">
+                <input type="text" class="form-control" name="sexo" id="sexo" th:value="${mascota.sexo}" required>
             </div>
             <div class="mb-3">
-                <label for="razaEspecie.descripcion" class="form-label">Raza</label>
-                <select name="razaEspecie.descripcion" class="form-select" id="razaEspecie.descripcion">
+                <label for="razaEspecie.id" class="form-label">Raza</label>
+                <select name="razaEspecie.id" class="form-select" id="razaEspecie.id" required>
                     <option th:each="raza : ${razas}" th:text="${raza.getDescripcion()}"
                             th:value="${raza.getId()}" th:selected="${raza.getId()==mascota.getRazaEspecie().getId()}"></option>
                 </select>
@@ -44,8 +44,8 @@
                 <input type="text" class="form-control" name="razaOtros" id="razaOtros" th:value="${mascota.razaOtros}">
             </div>
             <div class="mb-3">
-                <label for="supplier" class="form-label">Cuenta</label>
-                <select name="supplier.id" class="form-select" id="supplier">
+                <label for="cuenta" class="form-label">Cuenta</label>
+                <select name="cuenta.id" class="form-select" id="cuenta">
                     <option th:each="cuenta : ${cuentas}" th:text="${cuenta.getDireccion()}"
                             th:value="${cuenta.getId()}" th:selected="${cuenta.getId()==mascota.getCuenta().getId()}"></option>
                 </select>
