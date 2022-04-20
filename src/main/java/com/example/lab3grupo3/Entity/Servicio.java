@@ -3,12 +3,16 @@ package com.example.lab3grupo3.Entity;
 import com.example.lab3grupo3.Entity.Cuenta;
 import com.example.lab3grupo3.Entity.Mascota;
 import com.example.lab3grupo3.Entity.Responsable;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.Instant;
 
 @Entity
 @Table(name = "servicio")
+@Getter
+@Setter
 public class Servicio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,59 +41,5 @@ public class Servicio {
     @JoinColumn(name = "responsable_idresponsable", nullable = false)
     private Responsable responsableIdresponsable;
 
-    public Responsable getResponsableIdresponsable() {
-        return responsableIdresponsable;
-    }
 
-    public void setResponsableIdresponsable(Responsable responsableIdresponsable) {
-        this.responsableIdresponsable = responsableIdresponsable;
-    }
-
-    public String getEntrega() {
-        return entrega;
-    }
-
-    public void setEntrega(String entrega) {
-        this.entrega = entrega;
-    }
-
-    public Integer getDuracion() {
-        return duracion;
-    }
-
-    public void setDuracion(Integer duracion) {
-        this.duracion = duracion;
-    }
-
-    public Instant getHoraInicio() {
-        return horaInicio;
-    }
-
-    public void setHoraInicio(Instant horaInicio) {
-        this.horaInicio = horaInicio;
-    }
-
-    public Cuenta getCuentaIdcuenta() {
-        return cuentaIdcuenta;
-    }
-
-    public void setCuentaIdcuenta(Cuenta cuentaIdcuenta) {
-        this.cuentaIdcuenta = cuentaIdcuenta;
-    }
-
-    public Mascota getMascotaIdmascota() {
-        return mascotaIdmascota;
-    }
-
-    public void setMascotaIdmascota(Mascota mascotaIdmascota) {
-        this.mascotaIdmascota = mascotaIdmascota;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 }
