@@ -125,6 +125,7 @@ public class ServicioController {
     public String detallesServicio(@RequestParam("id") Integer id, Model model){
         if(id!=null && mascotaRepository.findById(id).isPresent()){
             model.addAttribute("servicios", mascotaRepository.obtenerServiciosMascota(id));
+            model.addAttribute("id",id);
             return "mascotas/detalles";
         }
         return "redirect:/servicio/lista";
